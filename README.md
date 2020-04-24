@@ -9,6 +9,4 @@ Youtube Comments Analyzer
 ![image](https://user-images.githubusercontent.com/45345120/80209968-e765ff00-866d-11ea-9691-e27d2791771d.jpg)
 ![image](https://user-images.githubusercontent.com/45345120/80209970-e7fe9580-866d-11ea-9181-0f0a3230e3cb.jpg)
 ![image](https://user-images.githubusercontent.com/45345120/80209972-e8972c00-866d-11ea-9826-eca83c270640.jpg)
-![image](https://user-images.githubusercontent.com/45345120/80209974-e92fc280-866d-11ea-9904-e4070d365023.jpg)
-![image](https://user-images.githubusercontent.com/45345120/80209979-e9c85900-866d-11ea-8c2f-cb929112efbb.jpg)
 ![image](https://user-images.githubusercontent.com/45345120/80209981-ea60ef80-866d-11ea-8092-35a0c46af798.jpg)

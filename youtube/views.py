@@ -18,7 +18,7 @@ def index(request):
 	return HttpResponse("Hello, world, You're at the youtube index.")
 
 def video(request, v_id, time):
-	
+
 	context = {'v_id':v_id, 'comment_url':"../comment", 'graph_url':"../graph", 'wc_url':"../wordcloud", 'time':time}
 	if(time == 0):
 		# Get comments from Youtube
@@ -47,7 +47,7 @@ def video(request, v_id, time):
 			times = i.group().split(':')
 			time_lst.append(int(times[0])*60 + int(times[1]))
 			idx = idx + 1
-			
+
 		for span in span_lst[::-1]:
 			idx = idx - 1
 			doc = doc[:span[0]] + "<a href='./" + str(time_lst[idx]) + "'>" + doc[span[0]:span[1]] + "</a>" + doc[span[1]:]
@@ -57,7 +57,7 @@ def video(request, v_id, time):
 	# Recommandation
 	api_service_name = "youtube"
 	api_version = "v3"
-	DEVELOPER_KEY = "AIzaSyDsLrL_A7MSptHO8QSMYM6i2_iPYelQEUo"       #API
+	DEVELOPER_KEY = "YOUTUBE_API"       #API
 	try:
 		youtube = googleapiclient.discovery.build(
 		api_service_name, api_version, developerKey = DEVELOPER_KEY)
@@ -136,7 +136,7 @@ def graph(request, v_id):
 			date.append(yy_mm_dd[0]+yy_mm_dd[1])
 		pos = pd.DataFrame({'datetime':date})
 		pos = pos.groupby(['datetime']).size()
-			
+
 
 		date = []
 		for data in neu_list:
@@ -151,7 +151,7 @@ def graph(request, v_id):
 			date.append(yy_mm_dd[0]+yy_mm_dd[1])
 		neg = pd.DataFrame({'datetime':date})
 		neg = neg.groupby('datetime').size()
-		
+
 		df = pd.concat([pos, neu, neg], axis=1, keys=('positive','neutral', 'negative'))
 		df = df.fillna(0)
 
@@ -165,7 +165,7 @@ def graph(request, v_id):
 			df['neutral'] = df['neu']
 			df['negative'] = df['neg']
 			df = df.drop(columns=['pos', 'neu', 'neg', 'sum'])
-		
+
 	# Draw graph
 	if percent != "all":
 		if len(df.index) > 10:
@@ -187,7 +187,7 @@ def graph(request, v_id):
 		fig, ax = plt.subplots(figsize=(5,5))
 		ax.pie(cnt, labels=senti_lst, labeldistance=0.5, textprops={'fontsize':17}, rotatelabels=True)
 		ax.legend()
-		
+
 		html_fig = mpld3.fig_to_html(fig, template_type='simple', figid='fig_graph')
 		print(html_fig)
 	context = {'v_id':v_id, 'graph':[html_fig], 'percent':percent}

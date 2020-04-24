@@ -11,7 +11,7 @@ class Comments:
 		os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 		self.api_service_name = "youtube"
 		self.api_version = "v3"
-		self.DEVELOPER_KEY = "AIzaSyBpbezVAQ2sHWIZ5FY7yo_i1zyuy1I-BwQ"       #API
+		self.DEVELOPER_KEY = "YOUTUBE_API"       #API
 		# Get WordDict from DB
 		self.dbWordDict = WordDict.objects.all()
 		self.youtube = googleapiclient.discovery.build(self.api_service_name, self.api_version, developerKey = self.DEVELOPER_KEY)
@@ -35,7 +35,7 @@ class Comments:
 			# To lower case (Eng)
 			text = text.lower()
 			senti_class = senti(text, self.dbWordDict)
-			comm = Comment(video_id=videoId, comment_id=comment['id'], text=comment['snippet']['textOriginal'], like=comment['snippet']['likeCount'], 
+			comm = Comment(video_id=videoId, comment_id=comment['id'], text=comment['snippet']['textOriginal'], like=comment['snippet']['likeCount'],
 				author_name=comment['snippet']['authorDisplayName'], author_image=comment['snippet']['authorProfileImageUrl'], timestamp=timestamp(text),
 				class3=senti_class[0], class6=senti_class[1], published_date=comment['snippet']['publishedAt'])
 			comm.save()
@@ -57,10 +57,10 @@ class Comments:
 		try:
 			dbComment = CommentReply.objects.get(video_id = videoId, parent_id = parentId, comment_id = commentId)
 		except:
-			comm = CommentReply(video_id=videoId, parent_id=parentId, comment_id=commentId, text=comment['snippet']['textOriginal'], 
+			comm = CommentReply(video_id=videoId, parent_id=parentId, comment_id=commentId, text=comment['snippet']['textOriginal'],
 				author_name=comment['snippet']['authorDisplayName'], author_image=comment['snippet']['authorProfileImageUrl'])
 			comm.save()
-    
+
     # Youtube API
 	def get_comments(self, v_id):
 		comment_lst = []

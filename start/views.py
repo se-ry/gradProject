@@ -28,11 +28,11 @@ def start(request):
 		r = requests.get(search_url, params=search_params)
 		print(r.json())
 		results = r.json()['items']
-	   	
+
 		video_ids = []
 		for result in results:
 			video_ids.append(result['id']['videoId'])
-	    
+
 		# Get Video Info
 		video_params = {
 			'key' : settings.YOUTUBE_DATA_API_KEY,
@@ -76,7 +76,7 @@ def user_info(request, user, user_id):
 			channel = request.POST['ChannelId']
 			query = UserInfo(usrId=user_id, channelId=channel)
 			query.save()
-	finally:	
+	finally:
 		context['channel'] = channel
 		return render(request, 'user_info.html', context)
 
@@ -88,7 +88,7 @@ def creator(request, user, user_id):
 	except:
 		channel = ""
 		context['channel'] = channel
-		return redirect("http://ec2-54-180-30-181.ap-northeast-2.compute.amazonaws.com:8000/userinfo/"+user+"/" +user_id)
+		return redirect("http://BASE_URL/userinfo/"+user+"/" +user_id)
 	else:
 		cre = creator_list()
 		# Get Youtube API results
@@ -130,7 +130,7 @@ def creator_video(request, user, v_id, time):
 			times = i.group().split(':')
 			time_lst.append(int(times[0])*60 + int(times[1]))
 			idx = idx + 1
-			
+
 		for span in span_lst[::-1]:
 			idx = idx - 1
 			doc = doc[:span[0]] + "<a href='./" + str(time_lst[idx]) + "'>" + doc[span[0]:span[1]] + "</a>" + doc[span[1]:]
@@ -155,7 +155,7 @@ def creator_comment(request, user, v_id):
 	if request.method == 'GET':
 		if 'search' in request.GET:
 			query = Comment.objects.filter(video_id=v_id, text__contains=request.GET['search'])
-	
+
 	context = {'v_id':v_id, 'comments':query, 'emotion':emotion}
 	return render(request, 'creator_comment.html', context)
 
@@ -176,6 +176,5 @@ def change(request, user, v_id, c_id):
 	if '6sent' in request.GET:
 		cmt.class6 = int(request.GET['6sent'])
 		cmt.save()
-		
-	# Change redirect URL -> http://ec2-54-180-30-181.ap-northeast-2.compute.amazonaws.com:8000
-	return redirect('http://ec2-54-180-30-181.ap-northeast-2.compute.amazonaws.com:8000/creator/'+user+"/"+v_id+"/comment")
+
+	return redirect('http://BASE_URL/creator/'+user+"/"+v_id+"/comment")

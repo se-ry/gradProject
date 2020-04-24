@@ -143,8 +143,8 @@ LOGIN_REDIRECT_URL = '/'
 SOCIALACCOUNT_PROVIDERS = {
     'google' : {
         'SCOPE' : ['https://www.googleapis.com/auth/youtube.upload', 'https://www.googleapis.com/auth/userinfo.profile']
-        
+
     }
 }
 
-YOUTUBE_DATA_API_KEY = 'AIzaSyDsLrL_A7MSptHO8QSMYM6i2_iPYelQEUo'
+YOUTUBE_DATA_API_KEY = 'YOUTUBE_API_KEY'

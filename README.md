@@ -1,5 +1,5 @@
-# gradProject
-Youtube Comments Analyzer
+# Youtube Comments Analyzer
+
 ![image](https://user-images.githubusercontent.com/45345120/80210577-f4372280-866e-11ea-8b1e-b3987ab82e96.jpg)
 ![image](https://user-images.githubusercontent.com/45345120/80210580-f4cfb900-866e-11ea-9ad1-2a7a85ca32d4.jpg)
 ![image](https://user-images.githubusercontent.com/45345120/80210684-2052a380-866f-11ea-8537-82a57e23c822.jpg)
